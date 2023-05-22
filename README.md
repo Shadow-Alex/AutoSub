@@ -28,7 +28,8 @@ the translation depends on output language. This means **0.06/h USD** in 'chat' 
 
 ## Project history
 * v1.0 : A stable version for Chinese translation.
+* v1.0.1 : Use ffmpeg to merge media.
 
 ## TODO
-* v1.0.1 : add multilingual translation support.
+* v1.0.2 : add multilingual translation support.
 * v1.1 : add CLI support.

@@ -1,24 +1,17 @@
-import os
-
-import whisper
 from tqdm import tqdm
 from openai_tasks import *
-from AutoSub import DEBUG, translation_path, media_path, logger
+from AutoSub import DEBUG, translation_path, media_path, output_path
 from youtube_downloader import download_page
 from helper import *
-
-def load_model():
-    return whisper.load_model('tiny', device='cuda') if DEBUG else whisper.load_model('large-v2', device='cuda')
+from whisper_task import transcribe_cached
 
 
 def transcribe(youtube_video_url, mode='chat'):
     # Step 1 : Download.
-    title, stored_path = download_page(youtube_video_url, media_path)
-    model = load_model()
+    title, audio_path, video_path = download_page(youtube_video_url, media_path)
 
     # Step 2 : Whisper transcription.
-    output = model.transcribe(stored_path, initial_prompt="This is " + title + "\n", verbose=True, language='en',
-                              word_timestamps=True)
+    output = transcribe_cached(title, audio_path)
 
     # Step 3 : Merge words into sentences:
     words = []
@@ -93,7 +86,19 @@ def transcribe(youtube_video_url, mode='chat'):
     if not os.path.exists(translation_path):
         os.makedirs(translation_path)
 
-    with open(os.path.join(translation_path, make_valid_linux_filename(title) + '.txt'), 'w') as file:
+    sub_path = os.path.join(translation_path, make_valid_linux_filename(title) + '.srt')
+    with open(sub_path, 'w') as file:
         print("Transcription is dumped to " + file.name)
         for idx, item in enumerate(responses):
-            file.write(item['out'] + "\n")
+            file.write((item['out'].decode("GBK") + "\n").encode("utf-8"))
+
+    merge_mkv(video_file=video_path, audio_file=audio_path, subtitle_file=sub_path, output_file=output_path)
+
+if __name__ == '__main__':
+    from pytube import Playlist
+    set_proxy("127.0.0.1", "7890")
+    playlist = Playlist("https://www.youtube.com/playlist?list=PLA5yNsxyt7sC3B4qhj_sMgGWqWWaSerq-")
+    playlist = list(playlist.video_urls)[2:]
+
+    for video_url in playlist:
+        transcribe(video_url)

@@ -165,3 +165,4 @@ openai.keys
 log
 /AutoSub/translation/
 /AutoSub/media/
+/AutoSub/transcription/

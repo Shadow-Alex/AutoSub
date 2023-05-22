@@ -1,4 +1,5 @@
-import openai, os, re
+import openai, os, re, subprocess
+from AutoSub import logger
 
 
 # helper function: parse hostip for wsl2.
@@ -62,3 +63,9 @@ def make_valid_linux_filename(string):
         filename = filename[:max_length]
 
     return filename
+
+def merge_mkv(video_file, audio_file, subtitle_file, output_file):
+    logger.info("Merging files into " + output_file)
+    logger.debug("ffmpeg -i " + video_file + " -i " + audio_file + " -i " + subtitle_file + ' -c copy ' + output_file)
+    subprocess.run("ffmpeg -i " + video_file + " -i " + audio_file + " -i " + subtitle_file + ' -c copy ' + output_file)
+

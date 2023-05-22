@@ -3,17 +3,21 @@ VERSION = "1.0.0"
 
 # Package-level configuration
 CONFIG = {
-    "debug": True,  # use smaller model and corpus when debug is set.
+    "debug": False,  # use smaller model and corpus when debug is set.
     "log_file": "log",
     "mode": "chat", # chat or completion
     "translation_path": 'translation',
-    "media_path": 'media'
+    "transcription_path": 'transcription',
+    "media_path": 'media',
+    "out_path": 'out'
 }
 
 DEBUG = CONFIG['debug']
 MODE = CONFIG['mode']
 translation_path = CONFIG['translation_path']
+transcription_path = CONFIG['transcription_path']
 media_path = CONFIG['media_path']
+output_path = CONFIG['out_path']
 
 # Logging utils
 import logging

@@ -76,7 +76,7 @@ def download_page(url, store_root):
     downloaded_video = download_best_video(url, v_path)
     downloaded_audio = download_best_audio(url, a_path)
 
-    return yt.title, downloaded_audio
+    return yt.title, downloaded_audio, downloaded_video
 
 
 # download from a youtube playlist.
