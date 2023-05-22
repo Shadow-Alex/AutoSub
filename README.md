@@ -22,9 +22,13 @@ transcribe("https://www.youtube.com/watch?v=vwHqxe9eVMk&list=PLA5yNsxyt7sC3B4qhj
 
 ## Cost projection
 This project run openai whisper locally to save your wallet. So the cost is solely text API.
-A typical english class for 1 hour sums up around 10~15K tokens, and a 15~25K for
-the translation depends on output language. If you are using 'chat' mode, this means around 0.05~0.08 USD.
+A typical english class for 1 hour gets around 10K tokens, and 20K for
+the translation depends on output language. This means **0.06/h USD** in 'chat' mode or 0.6 USD in 'complete' mode.
 
 
 ## Project history
 * v1.0 : A stable version for Chinese translation.
+
+## TODO
+* v1.0.1 : add multilingual translation support.
+* v1.1 : add CLI support.
