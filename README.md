@@ -20,6 +20,25 @@ transcribe("https://www.youtube.com/watch?v=vwHqxe9eVMk&list=PLA5yNsxyt7sC3B4qhj
 # transcribe("https://www.youtube.com/watch?v=vwHqxe9eVMk&list=PLA5yNsxyt7sC3B4qhj_sMgGWqWWaSerq-", mode='complete')
 ```
 
+## How AutoSub work
+```text
+         pytube            whisper                  LLMs                 ffmpeg
+origin _ _ _ _ _ _ audio _ _ _ _ _ _ transcript _ _ _ _ _ _ subtitle _ _ _ _ _ _ _ .mkv
+             |               ^                      ^                      ^
+             |               | prompt engineering   | prompt engineering   |
+             | _ _ info  _ _ | _ _ _ _ _ _ _ _ _ _ _|                      |  
+             |                                                             |
+             |                                                             |
+             | _ _ video _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ |
+```
+
+### I. Rule-based stability boost
+LLM models behaviors can be elusive. So AutoSub asks LLM to perform translation in an end-to-end
+manner. (Instructions and chunked `.srt` files are provided, and LLM is asked to translate it into a new 
+`.srt` in the target language)
+
+### II. Topic-related prompt engineering
+
 ## Cost projection
 This project run openai whisper locally to save your wallet. So the cost is solely text API.
 A typical english class for 1 hour gets around 10K tokens, and 20K for

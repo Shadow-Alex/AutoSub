@@ -1,0 +1,36 @@
+0
+00:00:00,000 --> 00:00:24,600
+ Okay, today we are going to be talking about some different linear models in time series analysis.
+1
+00:00:24,600 --> 00:00:32,060
+ And I've cleverly labeled this cryptically with ARMA models.
+2
+00:00:32,060 --> 00:00:35,520
+ You may not know what that is right now, but by the end of today you certainly will.
+3
+00:00:35,520 --> 00:01:07,480
+ Topics for today, we're going to start out by reviewing white noise and random walks.
+4
+00:01:07,480 --> 00:01:10,000
+ Remember, those were really simple time series models.
+5
+00:01:10,000 --> 00:01:21,760
+ And then we'll start talking about some somewhat more interesting time series models, autoregressive, moving average, the combination of those two autoregressive moving averages.
+6
+00:01:21,760 --> 00:01:36,300
+ And then we're going to revisit the autocorrelation function and partial autocorrelation function and see how those can be used to identify the orders of AR or MA models.
+7
+00:01:36,300 --> 00:01:52,860
+ Okay, so recall from last Thursday that a white noise is a time series where all of its values are independent, and they're identically distributed with a mean of zero.
+8
+00:01:52,860 --> 00:02:00,860
+ And we talked about how that distributional form for the errors is flexible, right?
+9
+00:02:00,860 --> 00:02:07,440
+ So here was an example where we were flipping a coin and taking twice that value subtracting one.
+10
+00:02:07,440 --> 00:02:17,340
+ And so we had a time series that was just bouncing back and forth between minus one and one, the mean was zero, and there is no correlation over time.
+11
+00:02:17,340 --> 00:02:26,640
+ You can see that the autocorrelation function is one at zero, because it's correlated with itself, and it's essentially functionally at zero everywhere else.

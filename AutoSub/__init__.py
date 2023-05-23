@@ -9,7 +9,8 @@ CONFIG = {
     "translation_path": 'translation',
     "transcription_path": 'transcription',
     "media_path": 'media',
-    "out_path": 'out'
+    "out_path": 'out',
+    "max_concurrent_req": 5,
 }
 
 DEBUG = CONFIG['debug']
@@ -18,6 +19,7 @@ translation_path = CONFIG['translation_path']
 transcription_path = CONFIG['transcription_path']
 media_path = CONFIG['media_path']
 output_path = CONFIG['out_path']
+max_concurrent_request = CONFIG['max_concurrent_req']
 
 # Logging utils
 import logging
